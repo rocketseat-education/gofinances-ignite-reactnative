@@ -24,57 +24,56 @@ import Apple from '../../assets/svg/apple.svg';
 import { SignInSocialButton } from '../../components/SignInSocialButton';
 
 export function SignIn(){
-    const [isLoading, setIsLoading] = useState(false);
-    const { signInWithGoogle, signInWithApple } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const { signInWithGoogle, signInWithApple } = useAuth();
 
-    const hanleSignInWithGoogle = useCallback(async () => {
-        setIsLoading(true);
-        try {
-            await signInWithGoogle();
-        } catch (error) {
-            console.log(error);
-        }    
-    }, [setIsLoading]);  
+  const hanleSignInWithGoogle = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      await signInWithGoogle();
+    } catch (error) {
+      console.log(error);
+    }    
+  }, [setIsLoading]);  
 
-    return (
-        <Container>
-            <Header>    
-                <TitleWrapper>                            
-                <Logo width={RFPercentage(20)}/>
+  return (
+    <Container>
+      <Header>    
+        <TitleWrapper>                            
+          <Logo width={RFPercentage(20)}/>
 
-                <Title>
-                    Controle suas {'\n'}
-                    finanças de forma {'\n'}
-                    muito simples
-                </Title>  
-                </TitleWrapper>
+          <Title>
+            Controle suas {'\n'}
+            finanças de forma {'\n'}
+            muito simples
+          </Title>  
+        </TitleWrapper>
 
-                <SignInTitle>
-                    Faça seu login com {'\n'}
-                    uma das contas abaixo
-                </SignInTitle>                           
-            </Header>
+        <SignInTitle>
+          Faça seu login com {'\n'}
+          uma das contas abaixo
+        </SignInTitle>                           
+      </Header>
 
-            <Footer>
-                <FooterWrapper>                  
-                    <SignInSocialButton 
-                        title="Entrar com Google" 
-                        svg={Google}
-                        onPress={hanleSignInWithGoogle}
-                    />  
+      <Footer>
+        <FooterWrapper>                  
+          <SignInSocialButton 
+            title="Entrar com Google" 
+            svg={Google}
+            onPress={hanleSignInWithGoogle}
+          />  
 
-                    {
-                        Platform.OS === 'ios' &&
-                        <SignInSocialButton 
-                            title="Entrar com Apple" 
-                            svg={Apple}
-                            onPress={signInWithApple}
-                        />                
-                    }
-                </FooterWrapper>
+          { Platform.OS === 'ios' && (
+            <SignInSocialButton 
+                title="Entrar com Apple" 
+                svg={Apple}
+                onPress={signInWithApple}
+            />                
+          )}
+        </FooterWrapper>
 
-               { isLoading && <Load/> }
-            </Footer>          
-        </Container>
-    )
+        { isLoading && <Load/> }
+      </Footer>          
+    </Container>
+  )
 }

@@ -9,7 +9,7 @@ interface IconProps {
 
 
 export const Container = styled.View<IconProps>`
-    background-color: ${({ theme, type }) => 
+    background-color: ${({ theme, type }) =>  
     type === 'dollar' ? theme.colors.secondary : theme.colors.shape};
     
     width: ${Dimensions.get('window').width - RFPercentage(12)}px;
